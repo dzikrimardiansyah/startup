@@ -20,7 +20,6 @@ func main() {
 
 	userRepository := users.NewRepository(db)
 	userService := users.NewService(userRepository)
-
 	userHandler := handler.NewUserHandler(userService)
 
 	router := gin.Default()
@@ -28,9 +27,8 @@ func main() {
 	api := router.Group("/api/v1")
 
 	api.POST("/users", userHandler.RegisterUser)
+	api.POST("/sessions", userHandler.Login)
+
 	router.Run()
-	// user := users.User{
-	// 	Name: "Test simpan",
-	// }
-	// userRepository.Save(user)
+
 }
