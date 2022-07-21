@@ -39,7 +39,7 @@ func (h *userHandler) RegisterUser(c *gin.Context) {
 		return
 	}
 
-	formatter := users.FormatUser(newUser)
+	formatter := users.FormatUser(newUser, "tokentokentoken")
 	response := helper.APIResponse("Account has been register", http.StatusOK, "success", formatter)
 	c.JSON(http.StatusOK, response)
 }
@@ -61,14 +61,13 @@ func (h *userHandler) Login(c *gin.Context) {
 
 	if err != nil {
 		errorMessage := gin.H{"errors": err.Error()}
-
 		response := helper.APIResponse("Login Failed", http.StatusUnprocessableEntity, "error", errorMessage)
 		c.JSON(http.StatusUnprocessableEntity, response)
 		return
 
 	}
 
-	formatter := users.FormatUser(loggedinUser)
+	formatter := users.FormatUser(loggedinUser, "tokentokentoken")
 	response := helper.APIResponse("Login Success", http.StatusOK, "success", formatter)
 	c.JSON(http.StatusOK, response)
 }
