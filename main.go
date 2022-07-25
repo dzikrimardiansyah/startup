@@ -1,9 +1,11 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"startup/auth"
+	"startup/campaign"
 	"startup/handler"
 	"startup/helper"
 	"startup/users"
@@ -24,6 +26,24 @@ func main() {
 	}
 
 	userRepository := users.NewRepository(db)
+	campaignRepository := campaign.NewRepository(db)
+
+	campaign, err := campaignRepository.FindByUserID(10)
+
+	fmt.Println("debug")
+	fmt.Println("debug")
+	fmt.Println("debug")
+	fmt.Println(len(campaign))
+
+	for _, campaign := range campaign {
+		fmt.Println(campaign.Name)
+		if len(campaign.CampaignImages) > 0 {
+			fmt.Println("jumlah gambar")
+			fmt.Println(len(campaign.CampaignImages))
+			fmt.Println(campaign.CampaignImages[0].FIleName)
+		}
+	}
+
 	userService := users.NewService(userRepository)
 	authService := auth.NewService()
 
