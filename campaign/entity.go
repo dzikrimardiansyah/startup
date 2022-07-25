@@ -17,7 +17,7 @@ type Campaign struct {
 	BackerCount      int
 	Slug             string
 	CreatedAt        time.Time
-	UpadateAt        time.Time
+	UpdatedAt        time.Time
 	CampaignImages   []CampaignImage
 	User             users.User
 }
@@ -28,5 +28,5 @@ type CampaignImage struct {
 	FileName   string
 	IsPrimary  int
 	CreatedAt  time.Time
-	UpadateAt  time.Time
+	UpdatedAt  time.Time
 }
